@@ -404,3 +404,94 @@ tbody td {
     font-size: 0.9rem;
     color: white;
 }
+
+/* add transaction modal ke liye */
+.modal{
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.hidden{
+    display: none;
+}
+
+.modal-box {
+    background-color: #1f2937;
+    border: 1px solid rgb(69, 69, 69);
+    border-radius: 16px;
+    padding: 30px;
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2{
+    font-size: 1.3rem;
+}
+
+.modal-header i {
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #888888;
+}
+
+.modal-header i:hover {
+    color: white;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group input,
+.input-group select {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid rgb(69, 69, 69);
+    background-color: #010c1a85;
+    color: #fff;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.input-row {
+    display: flex;
+    gap: 12px;
+}
+
+.input-row .input-group {
+    flex: 1;
+}
+
+#save-transaction {
+    padding: 12px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 6px;
+    width: 100%;
+}
