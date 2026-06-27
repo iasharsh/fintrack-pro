@@ -13,7 +13,7 @@ html {
 
 .container {
     display: flex;
-    max-height: 100vh;
+    min-height: 100vh;
 }
 
 /* Left side ka code */
@@ -106,13 +106,11 @@ html {
 
 /* Right topbar ka code */
 
-
-
 main {
-    /* width: 82%; */
     flex: 1;
-    background-color: #010d1b;
-
+    min-width: 0;
+    background-color: #001022;
+    overflow-y: auto;
 }
 
 .navbar {
@@ -153,4 +151,135 @@ main {
 
 .navbar button i {
     color: #4f6ef7;
+}
+
+/* dashboard aur cards ka*/
+
+.dashboard {
+    padding: 25px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* width: 100%;
+    background: red; */
+}
+
+.overview-cards{
+    display: grid;
+    width: 100%;
+    gap: 15px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.card{
+    background-color: #1f2937;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid rgb(69, 69, 69);
+}
+
+.card p{
+    color: #9ca3af;
+}
+
+.card h3{
+    font-size: 1.5rem;
+}
+
+#total-income{
+    color: #166534;
+}
+
+#total-expense{
+    color: #991b1b;
+}
+
+.card-icon{
+    width: 40px;
+    padding: 10px;
+    border-radius: 16px;
+}
+
+.bg-blue{
+    color: #60A5FA;
+    background-color: #374151;
+}
+
+.bg-green{
+    color: green;
+    background-color: #dcfce7;
+}
+
+.bg-red{
+    color: rgb(79, 2, 2);
+    background-color: #fee2e2;
+}
+
+/* styling for main section */
+
+.main{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    /* width: 100%; */
+}
+
+.left-col{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.analysis{
+    background-color: #1f2937;
+    border: 1px solid rgb(69, 69, 69);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.analysis h2 {
+    /* margin-bottom: 16px; */
+    font-size: 1.5rem;
+}
+
+#chart {
+    width: 100%;
+    height: 260px;
+}
+
+.preferences{
+    display: flex;
+    align-self: start;
+    flex-direction: column;
+    background-color: #1f2937;
+    border: 1px solid rgb(69, 69, 69);
+    border-radius: 16px;
+    padding: 24px;
+    gap: 24px;
+}
+
+.preferences h2{
+    /* margin-bottom: 16px; */
+    font-size: 1.5rem;
+}
+
+.preferences p{
+    font-weight: bold;
+}
+
+.mode-toggle{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid gray;
+}
+
+.preferences button{
+    padding: 10px;
+    border-radius: 8px;
+    color: #991b1b;
+    background-color: #fff5f5;
 }

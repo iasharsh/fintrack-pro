@@ -44,15 +44,78 @@
 
 
             <div class="dashboard">
-                <div class="header"></div>
+                <div class="header">
+                    <div>
+                        <h1>Financial Overview</h1>
+                        <p>Real-time tracking application</p>
+                    </div>
+                </div>
                 <div class="overview-cards">
-                    <!--4 cards -->
+                    <div class="card">
+                        <div class="card-icon bg-blue">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <p>Current Balance</p>
+                        <h3 id="current-balance">$0.00</h3>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon bg-green">
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                        </div>
+                        <p>Total Income</p>
+                        <h3 id="total-income">$0.00</h3>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon bg-red">
+                            <i class="fa-solid fa-arrow-trend-down"></i>
+                        </div>
+                        <p>Total Expense</p>
+                        <h3 id="total-expense">$0.00</h3>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon bg-blue">
+                            <i class="fa-solid fa-piggy-bank"></i>
+                        </div>
+                        <p>Total Transactions</p>
+                        <h3 id="total-transactions">0</h3>
+                    </div>
+
                 </div>
+
                 <div class="main">
-                    <div class="analysis"></div>
-                    <div class="preferences"></div>
+                    <div class="left-col">
+
+                        <div class="analysis">
+                            <h2>Cash Flow Analysis</h2>
+                            <canvas id="chart"></canvas>
+                        </div>
+
+                        <div class="transactions">
+                            <h3>All Transactions</h3>
+                            <div>
+                                <label >
+                                    <input type="text" name="" id="">
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="preferences">
+                        <h2>Preferences</h2>
+                        <div class="mode-toggle">
+                            <p>Dark Mode</p>
+                            <label class="switch">
+                                <input type="checkbox" id="dark-mode">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <!-- <hr> -->
+                        <button class="reset"><i class="fa-solid fa-trash"></i> Reset All Data</button>
+                    </div>
                 </div>
-                <div class="transactions"></div>
+
 
             </div>
         </main>
