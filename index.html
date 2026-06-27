@@ -92,11 +92,31 @@
 
                         <div class="transactions">
                             <h3>All Transactions</h3>
-                            <div>
-                                <label >
-                                    <input type="text" name="" id="">
-                                </label>
+                            <div class="search">
+                                <div class="search-bar">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <input type="text" id="search" placeholder="Search transactions...">
+                                </div>
+                                <select id="select">
+                                    <option value="all">All Types</option>
+                                    <option value="income">Income Only</option>
+                                    <option value="expense">Expense Only</option>
+                                </select>
                             </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>DATE</th>
+                                        <th>DESCRIPTION</th>
+                                        <th>CATEGORY</th>
+                                        <th>AMOUNT</th>
+                                        <th>ACTIONS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="transaction-body">
+
+                                </tbody>
+                            </table>
                         </div>
 
                     </div>

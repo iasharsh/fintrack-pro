@@ -277,9 +277,130 @@ main {
     border-bottom: 1px solid gray;
 }
 
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #374151;
+    border-radius: 34px;
+    transition: 0.3s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+input:checked + .slider {
+    background-color: #3b82f6;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.preferences input{
+    cursor: pointer;
+}
+
 .preferences button{
     padding: 10px;
     border-radius: 8px;
     color: #991b1b;
     background-color: #fff5f5;
+    cursor: pointer;
+}
+
+.transactions{
+    background-color: #1f2937;
+    border: 1px solid rgb(69, 69, 69);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.transactions h3{
+    font-size: 1.5rem;
+}
+
+.search{
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #001022;
+    border: 1px solid rgb(69, 69, 69);
+    border-radius: 8px;
+    padding: 8px 14px;
+}
+
+.search-bar input{
+    background: transparent;
+    border: none;
+    font-size: 0.9rem;
+}
+
+#select {
+    flex: 1;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid rgb(69, 69, 69);
+    color: white;
+    background-color: #001022;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+table{
+    width: 100%;
+    /* border-collapse: collapse; */
+}
+
+table th{
+    text-align: left;
+    padding: 2px 14px;
+    font-size: 0.8rem;
+    border-bottom: 1px solid rgb(69, 69, 69);
+    letter-spacing: 0.5px;
+    padding-bottom: 15px;
+}
+
+tbody tr{
+    border-bottom: 1px solid rgb(69, 69, 69);
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+    background-color: #374151;
+}
+
+tbody td {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+    color: white;
 }
