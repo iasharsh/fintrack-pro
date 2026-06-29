@@ -11,12 +11,242 @@ html {
     color: #ffffff;
 }
 
+.hidden {
+    display: none;
+}
+
+/* theme switch ke liye */
+body.dark {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* backgrounds */
+body.dark main {
+    background-color: #e5e7eb;
+}
+
+body.dark .sidebar {
+    background-color: #e5e7eb;
+    border-color: #d1d5db;
+}
+
+body.dark .navbar,
+body.dark .card,
+body.dark .analysis,
+body.dark .transactions,
+body.dark .preferences,
+body.dark .modal-box,
+body.dark .settings-card {
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
+}
+
+/* sare texts */
+body.dark .analysis h2,
+body.dark .transactions h3,
+body.dark .preferences h2,
+body.dark .card h3,
+body.dark .logo h1,
+body.dark .logo i,
+body.dark .mode-toggle p,
+body.dark tbody td {
+    color: #111111;
+}
+
+body.dark .card p,
+body.dark .input-group label,
+body.dark .logo p,
+body.dark table th {
+    color: #374151;
+}
+
+/* sidebar */
+body.dark .left ul li {
+    color: #111111;
+}
+
+body.dark .left ul li:hover,
+body.dark .left ul li.active {
+    background-color: #d1d5db;
+    color: #1d4ed8;
+}
+
+/* navbar */
+body.dark .navbar button {
+    color: #111111;
+    border-color: #111111;
+}
+
+body.dark .navbar button:hover {
+    background-color: #d1d5db;
+}
+
+body.dark .navbar button i {
+    color: #1d4ed8;
+}
+
+/* inputs */
+body.dark .search-bar,
+body.dark .search-bar input,
+body.dark #select,
+body.dark .input-group input,
+body.dark .input-group select,
+body.dark .settings-card input,
+body.dark .settings-card select {
+    background-color: #ffffff;
+    color: #111111;
+    border-color: #d1d5db;
+}
+
+body.dark .search-bar i {
+    color: #111111;
+}
+
+/* card ke icons */
+body.dark .bg-blue {
+    background-color: #bfdbfe;
+    color: #1d4ed8;
+}
+
+body.dark .bg-green {
+    background-color: #bbf7d0;
+    color: #15803d;
+}
+
+body.dark .bg-red {
+    background-color: #fecaca;
+    color: #991b1b;
+}
+
+/* login register ke liye jo authentication hai */
+.auth-container {
+    width: 100%;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f4f6;
+}
+
+.auth-box {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 40px;
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.auth-box h1 {
+    font-size: 1.6rem;
+    color: #111;
+    text-align: center;
+}
+
+.auth-box .title {
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-top: -8px;
+}
+
+.auth-box .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.auth-box .input-group label {
+    font-size: 0.85rem;
+    color: #374151;
+    font-weight: 500;
+}
+
+.auth-box .input-group input {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 0.95rem;
+    outline: none;
+    color: #111;
+    background-color: #fff;
+}
+
+.auth-box .input-group input:focus {
+    border-color: #3b82f6;
+}
+
+.auth-box button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+#login-btn {
+    background-color: #1d4ed8;
+}
+
+#login-btn:hover {
+    background-color: #1e40af;
+}
+
+#reg-btn {
+    background-color: #16a34a;
+}
+
+#reg-btn:hover {
+    background-color: #15803d;
+}
+
+.switch-auth {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.switch-auth a {
+    color: #3b82f6;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.switch-auth a:hover {
+    text-decoration: underline;
+}
+
+.error-msg {
+    color: #ef4444;
+    font-size: 0.85rem;
+    text-align: center;
+    background-color: #fee2e2;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    padding: 8px 12px;
+}
+
+body.dark .analysis {
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
+}
+
+body.dark .analysis h2 {
+    color: #111111;
+}
+
+/* dashboard ke liye */
 .container {
     display: flex;
     min-height: 100vh;
 }
-
-/* Left side ka code */
 
 .sidebar {
     position: sticky;
@@ -28,7 +258,7 @@ html {
     gap: 10px;
     border-right: 1px solid rgb(69, 69, 69);
     padding: 20px;
-    width: 18%;
+    width: 14%;
     height: 100vh;
     background-color: #1f2937;
 }
@@ -37,7 +267,6 @@ html {
     display: flex;
     flex-direction: column;
 }
-
 
 .logo {
     display: flex;
@@ -104,8 +333,6 @@ html {
     cursor: pointer;
 }
 
-/* Right topbar ka code */
-
 main {
     flex: 1;
     min-width: 0;
@@ -119,7 +346,7 @@ main {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 9vh;
+    height: 7vh;
     background-color: #1f2937;
     border-bottom: 1px solid rgb(69, 69, 69);
     padding: 0 24px;
@@ -153,124 +380,116 @@ main {
     color: #4f6ef7;
 }
 
-/* dashboard aur cards ka*/
-
 .dashboard {
     padding: 25px 30px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    /* width: 100%;
-    background: red; */
 }
 
-.overview-cards{
+.overview-cards {
     display: grid;
     width: 100%;
     gap: 15px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.card{
+.card {
     background-color: #1f2937;
     border-radius: 12px;
-    padding: 20px;
+    padding: 15px 18px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     border: 1px solid rgb(69, 69, 69);
 }
 
-.card p{
+.card p {
     color: #9ca3af;
 }
 
-.card h3{
+.card h3 {
     font-size: 1.5rem;
 }
 
-#total-income{
-    color: #166534;
+#total-income {
+    color: #22c55e;
 }
 
-#total-expense{
-    color: #991b1b;
+#total-expense {
+    color: #ef4444;
 }
 
-.card-icon{
+.card-icon {
     width: 40px;
     padding: 10px;
     border-radius: 16px;
 }
 
-.bg-blue{
+.bg-blue {
     color: #60A5FA;
     background-color: #374151;
 }
 
-.bg-green{
+.bg-green {
     color: green;
     background-color: #dcfce7;
 }
 
-.bg-red{
+.bg-red {
     color: rgb(79, 2, 2);
     background-color: #fee2e2;
 }
 
-/* styling for main section */
-
-.main{
+.main {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 16px;
-    /* width: 100%; */
 }
 
-.left-col{
+.left-col {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-.analysis{
+.analysis {
     background-color: #1f2937;
     border: 1px solid rgb(69, 69, 69);
     border-radius: 16px;
-    padding: 24px;
+    padding: 20px 24px;
 }
 
 .analysis h2 {
-    /* margin-bottom: 16px; */
     font-size: 1.5rem;
+    margin-bottom: 16px;
 }
 
 #chart {
     width: 100%;
-    height: 260px;
+    height: 180px;
 }
 
-.preferences{
+.preferences {
     display: flex;
     align-self: start;
     flex-direction: column;
     background-color: #1f2937;
     border: 1px solid rgb(69, 69, 69);
     border-radius: 16px;
-    padding: 24px;
+    padding: 20px 24px;
     gap: 24px;
 }
 
-.preferences h2{
-    /* margin-bottom: 16px; */
+.preferences h2 {
     font-size: 1.5rem;
 }
 
-.preferences p{
+.preferences p {
     font-weight: bold;
 }
 
-.mode-toggle{
+.mode-toggle {
     display: flex;
     justify-content: space-between;
     padding-bottom: 20px;
@@ -311,40 +530,36 @@ main {
     transition: 0.3s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #3b82f6;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     transform: translateX(20px);
 }
 
-.preferences input{
-    cursor: pointer;
-}
-
-.preferences button{
+.preferences button {
     padding: 10px;
     border-radius: 8px;
     color: #991b1b;
     background-color: #fff5f5;
     cursor: pointer;
+    border: none;
 }
 
-.transactions{
+.transactions {
     background-color: #1f2937;
     border: 1px solid rgb(69, 69, 69);
     border-radius: 16px;
-    padding: 24px;
+    padding: 20px 24px;
 }
 
-.transactions h3{
+.transactions h3 {
     font-size: 1.5rem;
 }
 
-.search{
+.search {
     display: flex;
-    justify-content: space-between;
     gap: 12px;
     margin: 16px 0;
 }
@@ -357,16 +572,19 @@ input:checked + .slider:before {
     border: 1px solid rgb(69, 69, 69);
     border-radius: 8px;
     padding: 8px 14px;
+    flex: 1;
 }
 
-.search-bar input{
+.search-bar input {
     background: transparent;
     border: none;
+    outline: none;
+    color: white;
     font-size: 0.9rem;
+    width: 100%;
 }
 
 #select {
-    flex: 1;
     padding: 8px 14px;
     border-radius: 8px;
     border: 1px solid rgb(69, 69, 69);
@@ -374,23 +592,24 @@ input:checked + .slider:before {
     background-color: #001022;
     font-size: 0.9rem;
     cursor: pointer;
+    flex: 1;
 }
 
-table{
+table {
     width: 100%;
-    /* border-collapse: collapse; */
 }
 
-table th{
+table th {
     text-align: left;
     padding: 2px 14px;
     font-size: 0.8rem;
     border-bottom: 1px solid rgb(69, 69, 69);
     letter-spacing: 0.5px;
     padding-bottom: 15px;
+    color: #9ca3af;
 }
 
-tbody tr{
+tbody tr {
     border-bottom: 1px solid rgb(69, 69, 69);
     transition: background-color 0.2s ease;
 }
@@ -405,19 +624,68 @@ tbody td {
     color: white;
 }
 
-/* add transaction modal ke liye */
-.modal{
+/* SETTINGS */
+.settings-container {
+    padding: 25px 30px;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.settings-container h1 {
+    font-size: 1.8rem;
+}
+
+.settings-container>p {
+    color: #9ca3af;
+}
+
+.settings-card {
+    background-color: #1f2937;
+    border: 1px solid rgb(69, 69, 69);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 100%;
+}
+
+.settings-card h3 {
+    font-size: 1.2rem;
+}
+
+.settings-card input,
+.settings-card select {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid rgb(69, 69, 69);
+    background-color: #001022;
+    color: #fff;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+#save-settings {
+    padding: 10px 20px;
+    background-color: #3b82f6;
+    color: white !important;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    width: fit-content;
+}
+
+/* modal ke liye */
+.modal {
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 999;
-}
-
-.hidden{
-    display: none;
 }
 
 .modal-box {
@@ -437,14 +705,13 @@ tbody td {
     gap: 14px;
 }
 
-
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.modal-header h2{
+.modal-header h2 {
     font-size: 1.3rem;
 }
 
@@ -464,12 +731,17 @@ tbody td {
     gap: 6px;
 }
 
+.input-group label {
+    font-size: 0.85rem;
+    color: #9ca3af;
+}
+
 .input-group input,
 .input-group select {
     padding: 10px 14px;
     border-radius: 8px;
     border: 1px solid rgb(69, 69, 69);
-    background-color: #010c1a85;
+    background-color: #010c1a;
     color: #fff;
     font-size: 0.9rem;
     outline: none;
@@ -494,4 +766,8 @@ tbody td {
     cursor: pointer;
     margin-top: 6px;
     width: 100%;
+}
+
+#save-transaction:hover {
+    background-color: #2563eb;
 }

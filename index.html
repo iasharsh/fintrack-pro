@@ -7,188 +7,270 @@
     <title>FinTrack Pro</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💹</text></svg>">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
 </head>
 
-<div class="modal hidden" id="modal">
-    <div class="modal-box">
-        <div class="modal-header">
-            <h2>Add Transaction</h2>
-            <i class="fa-solid fa-xmark" id="close-modal"></i>
-        </div>
-        <div class="modal-body">
-            <div class="input-group">
-                <label>Type</label>
-                <select id="transaction-type">
-                    <option value="expense">Expense</option>
-                    <option value="income">Income</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label>Description</label>
-                <input type="text" id="description" placeholder="e.g. Amazon, Salary, Coffee">
-            </div>
+<body>
 
-            <div class="input-row">
+    <!-- login karne ke liye -->
+    <div id="login-section" style="display:none">
+        <div class="auth-container">
+            <div class="auth-box">
+                <h1>Welcome Back</h1>
+                <p class="title">Login to FinTrack Pro</p>
                 <div class="input-group">
-                    <label>Amount</label>
-                    <input type="number" id="amount" placeholder="Enter amount">
+                    <label>Username</label>
+                    <input type="text" id="login-username" placeholder="Enter your username...">
                 </div>
                 <div class="input-group">
-                    <label>Date</label>
-                    <input type="date" id="date">
+                    <label>Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password...">
                 </div>
+                <p class="error-msg hidden" id="login-error"></p>
+                <button id="login-btn">Login</button>
+                <p class="switch-auth">
+                    Don't have an account?
+                    <a id="go-register">Register here</a>
+                </p>
             </div>
-            <div class="input-group">
-                <label>Category</label>
-                <select id="category">
-                    <option value="">Select a category</option>
-                    <option value="food">Food & Dining</option>
-                    <option value="shopping">Shopping</option>
-                    <option value="bills">Recharge & Bills</option>
-                    <option value="petrol">Petrol & Auto</option>
-                    <option value="utilities">Utilities</option>
-                    <option value="salary">Salary</option>
-                    <option value="entertainment">Entertainment</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-            <button id="save-transaction">Save Transaction</button>
         </div>
     </div>
-</div>
 
-
-<body>
-    <div class="container">
-        <aside class="sidebar">
-
-            <div class="top">
-
-                <div class="logo">
-                    <i class="fa-solid fa-layer-group"></i>
-                    <div>
-                        <h1>FinTrack Pro</h1>
-                        <p>Enterprise Finance</p>
-                    </div>
+    <!-- register karne ke liye -->
+    <div id="register-section" style="display:none">
+        <div class="auth-container">
+            <div class="auth-box">
+                <h1>Create Account</h1>
+                <p class="title">Join FinTrack Pro</p>
+                <div class="input-group">
+                    <label>Choose a Username</label>
+                    <input type="text" id="reg-username" placeholder="Enter your username...">
                 </div>
-                <nav class="left">
-                    <ul>
-                        <li class="active"><i class="fa-solid fa-border-all"></i> Dashboard</li>
-                        <li><i class="fa-solid fa-gear"></i> Settings</li>
-                    </ul>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="reg-password" placeholder="Enter your password...">
+                </div>
+                <p class="error-msg hidden" id="reg-error"></p>
+                <button id="reg-btn">Register</button>
+                <p class="switch-auth">
+                    Already have an account?
+                    <a id="go-login">Login here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- dashboard ke liye -->
+    <div id="dashboard-section" style="display:none">
+        <div class="container">
+            <aside class="sidebar">
+                <div class="top">
+                    <div class="logo">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <div>
+                            <h1>FinTrack Pro</h1>
+                            <p>Enterprise Finance</p>
+                        </div>
+                    </div>
+                    <nav class="left">
+                        <ul>
+                            <li class="nav-dashboard active">
+                                <i class="fa-solid fa-border-all"></i> Dashboard
+                            </li>
+                            <li class="nav-settings">
+                                <i class="fa-solid fa-gear"></i> Settings
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <button class="add-btn">+ Add Transaction</button>
+            </aside>
+
+            <main>
+                <nav class="navbar">
+                    <span class="name">Name</span>
+                    <button id="logout">
+                        <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    </button>
                 </nav>
 
-            </div>
-
-            <button class="add-btn">
-                + Add Transaction
-            </button>
-        </aside>
-
-        <main>
-            <nav class="navbar">
-                <span class="name">Name</span>
-                <button id="logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
-            </nav>
-
-
-            <div class="dashboard">
-                <div class="header">
-                    <div>
+                <!-- dashboard -->
+                <div class="dashboard" id="dashboard-page">
+                    <div class="header">
                         <h1>Financial Overview</h1>
                         <p>Real-time tracking application</p>
                     </div>
-                </div>
-                <div class="overview-cards">
-                    <div class="card">
-                        <div class="card-icon bg-blue">
-                            <i class="fa-solid fa-building-columns"></i>
-                        </div>
-                        <p>Current Balance</p>
-                        <h3 id="current-balance">$0.00</h3>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon bg-green">
-                            <i class="fa-solid fa-arrow-trend-up"></i>
-                        </div>
-                        <p>Total Income</p>
-                        <h3 id="total-income">$0.00</h3>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon bg-red">
-                            <i class="fa-solid fa-arrow-trend-down"></i>
-                        </div>
-                        <p>Total Expense</p>
-                        <h3 id="total-expense">$0.00</h3>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon bg-blue">
-                            <i class="fa-solid fa-piggy-bank"></i>
-                        </div>
-                        <p>Total Transactions</p>
-                        <h3 id="total-transactions">0</h3>
-                    </div>
 
-                </div>
-
-                <div class="main">
-                    <div class="left-col">
-
-                        <div class="analysis">
-                            <h2>Cash Flow Analysis</h2>
-                            <canvas id="chart"></canvas>
-                        </div>
-
-                        <div class="transactions">
-                            <h3>All Transactions</h3>
-                            <div class="search">
-                                <div class="search-bar">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                    <input type="text" id="search" placeholder="Search transactions...">
-                                </div>
-                                <select id="select">
-                                    <option value="all">All Types</option>
-                                    <option value="income">Income Only</option>
-                                    <option value="expense">Expense Only</option>
-                                </select>
+                    <div class="overview-cards">
+                        <div class="card">
+                            <div class="card-icon bg-blue">
+                                <i class="fa-solid fa-building-columns"></i>
                             </div>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>DATE</th>
-                                        <th>DESCRIPTION</th>
-                                        <th>CATEGORY</th>
-                                        <th>AMOUNT</th>
-                                        <th>ACTIONS</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="transaction-body">
-
-                                </tbody>
-                            </table>
+                            <p>Current Balance</p>
+                            <h3 id="current-balance">$0.00</h3>
                         </div>
-
+                        <div class="card">
+                            <div class="card-icon bg-green">
+                                <i class="fa-solid fa-arrow-trend-up"></i>
+                            </div>
+                            <p>Total Income</p>
+                            <h3 id="total-income">$0.00</h3>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon bg-red">
+                                <i class="fa-solid fa-arrow-trend-down"></i>
+                            </div>
+                            <p>Total Expense</p>
+                            <h3 id="total-expense">$0.00</h3>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon bg-blue">
+                                <i class="fa-solid fa-piggy-bank"></i>
+                            </div>
+                            <p>Total Transactions</p>
+                            <h3 id="total-transactions">0</h3>
+                        </div>
                     </div>
 
+                    <div class="main">
+                        <div class="left-col">
+                            <div class="analysis">
+                                <h2>Cash Flow Analysis</h2>
+                                <div style="height: 180px;">
+                                    <canvas id="chart"></canvas>
+                                </div>
+                            </div>
 
-                    <div class="preferences">
-                        <h2>Preferences</h2>
-                        <div class="mode-toggle">
-                            <p>Dark Mode</p>
-                            <label class="switch">
-                                <input type="checkbox" id="dark-mode">
-                                <span class="slider"></span>
-                            </label>
+                            <div class="transactions">
+                                <h3>All Transactions</h3>
+                                <div class="search">
+                                    <div class="search-bar">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                        <input type="text" id="search" placeholder="Search transactions...">
+                                    </div>
+                                    <select id="select">
+                                        <option value="all">All Types</option>
+                                        <option value="income">Income Only</option>
+                                        <option value="expense">Expense Only</option>
+                                    </select>
+                                </div>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>DATE</th>
+                                            <th>DESCRIPTION</th>
+                                            <th>CATEGORY</th>
+                                            <th>AMOUNT</th>
+                                            <th>ACTIONS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="transaction-body"></tbody>
+                                </table>
+                            </div>
                         </div>
-                        <!-- <hr> -->
-                        <button class="reset"><i class="fa-solid fa-trash"></i> Reset All Data</button>
+
+                        <div class="preferences">
+                            <h2>Preferences</h2>
+                            <div class="mode-toggle">
+                                <p>Light Mode</p>
+                                <label class="switch">
+                                    <input type="checkbox" id="dark-mode">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <button class="reset">
+                                <i class="fa-solid fa-trash"></i> Reset All Data
+                            </button>
+                        </div>
                     </div>
                 </div>
 
+                <!-- settings wala page -->
+                <div class="hidden" id="settings-page">
+                    <div class="settings-container">
+                        <h1>Settings</h1>
+                        <p>Manage your account profile and app formatting</p>
+                        <div class="settings-card">
+                            <h3>Profile Details</h3>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Full Name</label>
+                                    <input type="text" id="settings-name" placeholder="Enter your name">
+                                </div>
+                                <div class="input-group">
+                                    <label>Primary Currency</label>
+                                    <select id="settings-currency">
+                                        <option value="$">USD ($)</option>
+                                        <option value="€">EUR (€)</option>
+                                        <option value="£">GBP (£)</option>
+                                        <option value="₹">INR (₹)</option>
+                                        <option value="¥">JPY (¥)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button id="save-settings">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
 
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
+
+    <!-- add transaction modal ke liye -->
+    <div class="modal hidden" id="modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h2>Add Transaction</h2>
+                <i class="fa-solid fa-xmark" id="close-modal"></i>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label>Type</label>
+                    <select id="transaction-type">
+                        <option value="expense">Expense</option>
+                        <option value="income">Income</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Description</label>
+                    <input type="text" id="description" placeholder="e.g. Amazon, Salary, Coffee">
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Amount</label>
+                        <input type="number" id="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="input-group">
+                        <label>Date</label>
+                        <input type="date" id="date">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Category</label>
+                    <select id="category">
+                        <option value="">Select a category</option>
+                        <option value="food">Food & Dining</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="bills">Recharge & Bills</option>
+                        <option value="petrol">Petrol & Auto</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="salary">Salary</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <button id="save-transaction">Save Transaction</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+
 </body>
 
 </html>
