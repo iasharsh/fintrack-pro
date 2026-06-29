@@ -1202,6 +1202,29 @@
 
         }
 
+        // modal ko edit krne ke liye
+        function openEditModal(username, id) {
+            const data = getUserData(username);
+            const t = data.transactions.find(t => t.id === id);
+            if (!t) return;
+
+            // fill modal with existing values
+            document.getElementById('transaction-type').value = t.type;
+            document.getElementById('description').value = t.desc;
+            document.getElementById('amount').value = t.amount;
+            document.getElementById('date').value = t.date;
+            document.getElementById('category').value = t.category;
+
+            // change button text
+            document.getElementById('save-transaction').textContent = 'Update Transaction';
+
+            // store the id being edited
+            document.getElementById('save-transaction').dataset.editId = id;
+            document.getElementById('save-transaction').dataset.username = username;
+
+            openModal();
+        }
+
         function deleteTransaction(username, id) {
             const data = getUserData(username);
             data.transactions = data.transactions.filter(t => t.id !== id);
@@ -1227,10 +1250,14 @@
                 ${t.type === 'income' ? '+' : '-'}${currency}${t.amount.toFixed(2)}
             </td>
             <td>
-                <button onclick="deleteTransaction('${username}', ${t.id})" 
-                        style="background:transparent;border:none;color:#ef4444;cursor:pointer;">
+                    <button onclick="openEditModal('${username}', ${t.id})" 
+                    style="background:transparent;border:none;color:#3b82f6;cursor:pointer;margin-right:8px;">
+                    <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button onclick="deleteTransaction('${username}', ${t.id})" 
+                    style="background:transparent;border:none;color:#ef4444;cursor:pointer;">
                     <i class="fa-solid fa-trash"></i>
-                </button>
+                    </button>
             </td>
         </tr>
     `).join('');
