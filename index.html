@@ -1047,7 +1047,7 @@
 
     <!-- <script src="./js/script.js"></script> -->
     <script>
-        // local storage
+        /// local storage
 
         const getUsers = () => JSON.parse(localStorage.getItem('users')) || {};
         const saveUsers = (users) => localStorage.setItem('users', JSON.stringify(users));
@@ -1089,23 +1089,14 @@
             const password = document.getElementById('login-password').value.trim();
             const error = document.getElementById('login-error');
 
-            // if (!username || !password) return showError(error, 'Please enter username and password.');
             if (!username && !password) return showError(error, 'Please enter username and password.');
             if (!username) return showError(error, 'Please enter a username.');
             if (!password) return showError(error, 'Please enter a password.');
 
             const users = getUsers();
-            console.log('users object:', users);
-            console.log('has property:', users.hasOwnProperty(username));
-            console.log('type:', typeof users);
 
             if (!users.hasOwnProperty(username)) return showError(error, 'User not found. Please register first.');
             if (users[username] !== password) return showError(error, 'Incorrect password. Try again.');
-
-            // console.log('username:', username);
-            // console.log('password:', password);
-            // console.log('stored users:', users);
-
 
             document.getElementById('login-username').value = '';
             document.getElementById('login-password').value = '';
@@ -1127,11 +1118,9 @@
             const register = document.getElementById('register-section');
             const dashboard = document.getElementById('dashboard-section');
 
-
             login.style.display = 'none';
             register.style.display = 'none';
             dashboard.style.display = 'none';
-
 
             if (section === 'login') {
                 login.style.display = 'block';
@@ -1164,6 +1153,17 @@
 
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
+            // reset button and clear edit state
+            const btn = document.getElementById('save-transaction');
+            btn.textContent = 'Save Transaction';
+            delete btn.dataset.editId;
+            delete btn.dataset.username;
+            // clear modal fields
+            document.getElementById('transaction-type').value = 'expense';
+            document.getElementById('description').value = '';
+            document.getElementById('amount').value = '';
+            document.getElementById('date').value = '';
+            document.getElementById('category').value = '';
         }
 
         function applyDarkMode(on) {
@@ -1199,7 +1199,6 @@
             saveUserData(username, data);
             renderAll(username);
             closeModal();
-
         }
 
         // modal ko edit krne ke liye
@@ -1208,19 +1207,16 @@
             const t = data.transactions.find(t => t.id === id);
             if (!t) return;
 
-            // fill modal with existing values
             document.getElementById('transaction-type').value = t.type;
             document.getElementById('description').value = t.desc;
             document.getElementById('amount').value = t.amount;
             document.getElementById('date').value = t.date;
             document.getElementById('category').value = t.category;
 
-            // change button text
-            document.getElementById('save-transaction').textContent = 'Update Transaction';
-
-            // store the id being edited
-            document.getElementById('save-transaction').dataset.editId = id;
-            document.getElementById('save-transaction').dataset.username = username;
+            const btn = document.getElementById('save-transaction');
+            btn.textContent = 'Update Transaction';
+            btn.dataset.editId = id;
+            btn.dataset.username = username;
 
             openModal();
         }
@@ -1250,14 +1246,14 @@
                 ${t.type === 'income' ? '+' : '-'}${currency}${t.amount.toFixed(2)}
             </td>
             <td>
-                    <button onclick="openEditModal('${username}', ${t.id})" 
-                    style="background:transparent;border:none;color:#3b82f6;cursor:pointer;margin-right:8px;">
+                <button onclick="openEditModal('${username}', ${t.id})" 
+                        style="background:transparent;border:none;color:#3b82f6;cursor:pointer;margin-right:8px;">
                     <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button onclick="deleteTransaction('${username}', ${t.id})" 
-                    style="background:transparent;border:none;color:#ef4444;cursor:pointer;">
+                </button>
+                <button onclick="deleteTransaction('${username}', ${t.id})" 
+                        style="background:transparent;border:none;color:#ef4444;cursor:pointer;">
                     <i class="fa-solid fa-trash"></i>
-                    </button>
+                </button>
             </td>
         </tr>
     `).join('');
@@ -1350,7 +1346,40 @@
             // modal
             document.querySelector('.add-btn').addEventListener('click', openModal);
             document.getElementById('close-modal').addEventListener('click', closeModal);
-            document.getElementById('save-transaction').addEventListener('click', () => addTransaction(getCurrentUser()));
+
+            // save or update transaction
+            document.getElementById('save-transaction').addEventListener('click', () => {
+                const btn = document.getElementById('save-transaction');
+                const editId = btn.dataset.editId;
+                const username = getCurrentUser();
+
+                const type = document.getElementById('transaction-type').value;
+                const desc = document.getElementById('description').value.trim();
+                const amount = parseFloat(document.getElementById('amount').value);
+                const date = document.getElementById('date').value;
+                const category = document.getElementById('category').value;
+
+                if (!desc || !amount || !date || !category) return alert('Fill all fields.');
+
+                if (editId) {
+                    // update existing transaction
+                    const data = getUserData(username);
+                    const index = data.transactions.findIndex(t => t.id === Number(editId));
+                    if (index !== -1) {
+                        data.transactions[index].type = type;
+                        data.transactions[index].desc = desc;
+                        data.transactions[index].amount = amount;
+                        data.transactions[index].date = date;
+                        data.transactions[index].category = category;
+                        saveUserData(username, data);
+                        renderAll(username);
+                    }
+                    closeModal();
+                } else {
+                    // add new transaction
+                    addTransaction(username);
+                }
+            });
 
             // search aur filter
             document.getElementById('search').addEventListener('input', e => {
@@ -1386,7 +1415,6 @@
                 renderAll(user);
             });
 
-
             // clear errors on typing
             document.getElementById('login-username').addEventListener('input', () => {
                 document.getElementById('login-error').classList.add('hidden');
@@ -1400,8 +1428,6 @@
             document.getElementById('reg-password').addEventListener('input', () => {
                 document.getElementById('reg-error').classList.add('hidden');
             });
-
-
 
             // mode switch
             document.getElementById('dark-mode').addEventListener('change', e => {
